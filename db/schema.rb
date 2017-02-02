@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202022015) do
+ActiveRecord::Schema.define(version: 20170202022321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20170202022015) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["starts_at", "ends_at"], name: "index_elections_on_starts_at_and_ends_at", using: :btree
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.string   "office",      null: false
+    t.integer  "election_id", null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["election_id"], name: "index_races_on_election_id", using: :btree
   end
 
 end
