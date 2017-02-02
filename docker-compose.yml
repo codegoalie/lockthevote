@@ -12,6 +12,7 @@ web:
   command: bundle exec rails s -p 3000 -b 0.0.0.0
   environment:
     DATABASE_URL: 'postgresql://locker:locker@db/lock-dev'
+    TEST_DATABASE_URL: 'postgresql://locker:locker@db/lock-test'
   ports:
     - "3000:3000"
   links:
