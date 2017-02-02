@@ -6,3 +6,4 @@ tags
 doc/*
 .env
 config/deploy/*
+.irbhistory
