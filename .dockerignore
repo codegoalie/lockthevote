@@ -1,0 +1,8 @@
+tmp/*
+log/*.log
+.git
+.bundle
+tags
+doc/*
+.env
+config/deploy/*

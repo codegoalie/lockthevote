@@ -1,0 +1,20 @@
+db:
+  image: postgres:9.4.1
+  environment:
+    POSTGRES_USER: locker
+    POSTGRES_PASSWORD: locker
+    POSTGRES_DB: lock-dev
+  ports:
+    - "5432:5432"
+
+web:
+  build: .
+  command: bundle exec rails s -p 3000 -b 0.0.0.0
+  environment:
+    DATABASE_URL: 'postgresql://locker:locker@db/lock-dev'
+  ports:
+    - "3000:3000"
+  links:
+    - db
+  volumes:
+    - .:/lockthevote
