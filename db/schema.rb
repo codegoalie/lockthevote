@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202022754) do
+ActiveRecord::Schema.define(version: 20170202023325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "candidates", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "race_id",    null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["race_id"], name: "index_candidates_on_race_id", using: :btree
+  end
 
   create_table "elections", force: :cascade do |t|
     t.string   "name",       null: false
