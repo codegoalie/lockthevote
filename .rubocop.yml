@@ -1,0 +1,13 @@
+AllCops:
+  Include:
+    - Rakefile
+    - config.ru
+  Exclude:
+    - db/schema.rb
+    - bin/*
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
