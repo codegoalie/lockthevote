@@ -72,5 +72,11 @@ elections.each do |data|
       race.candidates << Candidate.find_or_initialize_by(name: name)
     end
     race.save!
+
+    (rand * 10).round.times do
+      Vote.create!(voter: FactoryGirl.create(:user),
+                   race: race,
+                   selection: race.candidates.sample)
+    end
   end
 end
