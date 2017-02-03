@@ -23,8 +23,8 @@ en:
   activerecord:
     attributes:
       election:
-        starts_at: Begins on
-        ends_at: Closes on
+        starts_at: Opens
+        ends_at: Closes
   time:
     formats:
       full: '%A, %B %-d, %Y'
