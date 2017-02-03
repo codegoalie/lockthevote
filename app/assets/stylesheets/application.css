@@ -15,3 +15,7 @@
  *= require foundation_and_overrides
 
  */
+
+h1, h2, h3 {
+  border-bottom: 1px solid #e5e5e5;
+}
