@@ -14,7 +14,7 @@ web:
     DATABASE_URL: 'postgresql://locker:locker@db/lock-dev'
     TEST_DATABASE_URL: 'postgresql://locker:locker@db/lock-test'
   ports:
-    - "3000:3000"
+    - "8081:3000"
   links:
     - db
   volumes:
