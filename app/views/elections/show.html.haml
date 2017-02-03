@@ -30,7 +30,11 @@
                   %tr
                     %td
                       - if race.winner == candidate
-                        %strong= candidate.name
+                        %h5
+                          %strong= candidate.name
+                        %h6.subheader
+                          %strong= candidate.description
                       - else
-                        = candidate.name
+                        %h5= candidate.name
+                        %h6.subheader= candidate.description
 

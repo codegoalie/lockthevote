@@ -16,26 +16,35 @@ elections = [
       {
         office_name: 'Commander in Cream and Vice Ice',
         candidates: [
-          "ReeseWithoutASpoon - Democrat for C.I.C\nCherry Garcia - Democrat " \
-          'for Vice Ice',
-          "Choco 'Chip' Dough - Republican for C.I.C.\nCarmela Coney - " \
-          'Republican for Vice Ice',
-          "Magic Browny - Independent for C.I.Complex\nPhish Food - " \
-          'Independent for Vice Ice'
+          {
+            name: 'ReeseWithoutASpoon - Democrat for C.I.C',
+            description: 'Cherry Garcia - Democrat for Vice Ice'
+          },
+          {
+            name:   "Choco 'Chip' Dough - Republican for C.I.C.",
+            description: 'Carmela Coney - Republican for Vice Ice'
+          },
+          {
+            name: 'Magic Browny - Independent for C.I.Complex',
+            description: 'Phish Food - Independent for Vice Ice'
+          }
         ]
       },
       {
         office_name: 'Cheif Dairy Queen',
         office_description: 'Shall Justice Mint C. Chip of the Supreme Court ' \
         'of the State of Ice Cream be retained in office for another term?',
-        candidates: %w(Yes No)
+        candidates: [
+          { name: 'Yes' },
+          { name: 'No' }
+        ]
       },
       {
         office_name: 'State Rep. District M&M',
         candidates: [
-          'P. Nut Butter (Republican)',
-          'Cream C. Kol (Independent)',
-          'Marsh Mallow (Democrat)'
+          { name: 'P. Nut Butter (Republican)' },
+          { name: 'Cream C. Kol (Independent)' },
+          { name: 'Marsh Mallow (Democrat)' }
         ]
       }
     ]
@@ -48,8 +57,8 @@ elections = [
         office_description: 'Make vanilla (over chocolate) the official best ' \
         'flavor',
         candidates: [
-          'Yes on CI - 116 (For vanilla)',
-          'No on CI - 116 (No on vanilla)'
+          { name: 'Yes on CI - 116 (For vanilla)' },
+          { name: 'No on CI - 116 (No on vanilla)' }
         ]
       }
     ]
@@ -68,8 +77,8 @@ elections.each do |data|
                                       election_id: election.id)
     race.update_attributes!(description: race_data[:office_description])
 
-    race_data[:candidates].each do |name|
-      race.candidates << Candidate.find_or_initialize_by(name: name)
+    race_data[:candidates].each do |params|
+      race.candidates << Candidate.find_or_initialize_by(params)
     end
     race.save!
 
