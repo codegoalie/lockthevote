@@ -4,7 +4,7 @@ class Race < ApplicationRecord
   has_many :candidates
 
   def winner
-    votes.winner_of self
+    @winner ||= votes.winner_of self
   end
 
   def margin
