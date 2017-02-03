@@ -8,6 +8,6 @@
   %tbody
     - @elections.each do |election|
       %tr
-        %td= election.name
+        %td= link_to election.name, election_path(election)
         %td= l election.starts_at
         %td= l election.ends_at

@@ -1,0 +1,13 @@
+%h1= @election.name
+%dl
+  %dt= Election.human_attribute_name :starts_at
+  %dd= l @election.starts_at
+  %dt= Election.human_attribute_name :ends_at
+  %dd= l @election.ends_at
+
+%h2= Election.human_attribute_name :races
+- @election.races.each do |race|
+  %p
+    %h3= race.office
+    - if race.description.present?
+      %p= race.description
