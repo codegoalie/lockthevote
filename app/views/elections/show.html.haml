@@ -1,13 +1,36 @@
-%h1= @election.name
-%dl
-  %dt= Election.human_attribute_name :starts_at
-  %dd= l @election.starts_at
-  %dt= Election.human_attribute_name :ends_at
-  %dd= l @election.ends_at
+.row
+  .medium-12.columns
+    %h1= @election.name
+    .row
+      .medium-3.columns
+        %dl
+          %dt= Election.human_attribute_name :starts_at
+          %dd= l @election.starts_at, format: :full
+      .medium-3.columns
+        %dl
+          %dt= Election.human_attribute_name :ends_at
+          %dd= l @election.ends_at, format: :full
+      .medium-6.columns
 
-%h2= Election.human_attribute_name :races
-- @election.races.each do |race|
-  %p
-    %h3= race.office
-    - if race.description.present?
-      %p= race.description
+    %h2= Election.human_attribute_name :races
+    - @election.races.each do |race|
+      %p
+        %h3= race.office
+        - if race.description.present?
+          %p.lead= race.description
+
+        .row
+          .medium-6.columns
+            %table.stacked
+              %thead
+                %tr
+                  %th= Race.human_attribute_name :candidate
+              %tbody
+                - race.candidates.each do |candidate|
+                  %tr
+                    %td
+                      - if race.winner == candidate
+                        %strong= candidate.name
+                      - else
+                        = candidate.name
+
