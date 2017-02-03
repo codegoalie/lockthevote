@@ -1,0 +1,13 @@
+%table.stacked
+  %thead
+    %tr
+      %th= Election.human_attribute_name :name
+      %th= Election.human_attribute_name :starts_at
+      %th= Election.human_attribute_name :ends_at
+      %th
+  %tbody
+    - @elections.each do |election|
+      %tr
+        %td= election.name
+        %td= l election.starts_at
+        %td= l election.ends_at
