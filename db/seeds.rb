@@ -14,6 +14,7 @@ elections = [
     election: 'Federal and State',
     races: [
       {
+        type: 'Race',
         office_name: 'Commander in Cream and Vice Ice',
         candidates: [
           {
@@ -31,6 +32,7 @@ elections = [
         ]
       },
       {
+        type: 'Race',
         office_name: 'Cheif Dairy Queen',
         office_description: 'Shall Justice Mint C. Chip of the Supreme Court ' \
         'of the State of Ice Cream be retained in office for another term?',
@@ -40,6 +42,7 @@ elections = [
         ]
       },
       {
+        type: 'PickTwoRace',
         office_name: 'State Rep. District M&M',
         candidates: [
           { name: 'P. Nut Butter (Republican)' },
@@ -53,6 +56,7 @@ elections = [
     election: 'County',
     races: [
       {
+        type: 'Race',
         office_name: 'Constitutional Initiative No. 116',
         office_description: 'Make vanilla (over chocolate) the official best ' \
         'flavor',
@@ -74,6 +78,7 @@ elections.each do |data|
 
   data[:races].each do |race_data|
     race = Race.find_or_initialize_by(office: race_data[:office_name],
+                                      type: race_data[:type],
                                       election_id: election.id)
     race.update_attributes!(description: race_data[:office_description])
 
@@ -83,9 +88,16 @@ elections.each do |data|
     race.save!
 
     (rand * 10).round.times do
-      Vote.create!(voter: FactoryGirl.create(:user),
-                   race: race,
-                   selection: race.candidates.sample)
+      case race.type
+      when 'PickTwoRace'
+        Vote.create!(voter: FactoryGirl.create(:user),
+                     race: race,
+                     selection: race.candidates.sample(2).pluck(:id).join(','))
+      else
+        Vote.create!(voter: FactoryGirl.create(:user),
+                     race: race,
+                     selection: race.candidates.sample.id)
+      end
     end
   end
 end
