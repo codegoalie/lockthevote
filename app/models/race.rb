@@ -15,10 +15,12 @@ class Race < ApplicationRecord
   private
 
   def results
-    counts = Hash.new(0)
-    votes.each do |vote|
-      counts[vote.selection] += 1
+    selections.each_with_object(Hash.new(0)) do |selection, counts|
+      counts[selection] += 1
     end
-    counts
+  end
+
+  def selections
+    votes.pluck(:selection)
   end
 end

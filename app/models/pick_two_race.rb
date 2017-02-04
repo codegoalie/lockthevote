@@ -1,3 +1,9 @@
 class PickTwoRace < Race
-  def winner; end
+  private
+
+  def selections
+    votes.select(:selection).flat_map do |vote|
+      vote.selection.split(',')
+    end
+  end
 end
