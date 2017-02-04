@@ -12,15 +12,13 @@ class Race < ApplicationRecord
     candidates.find(winning_selection[0])
   end
 
+  private
+
   def results
     counts = Hash.new(0)
     votes.each do |vote|
       counts[vote.selection] += 1
     end
     counts
-  end
-
-  def margin
-    0.56
   end
 end
