@@ -1,0 +1,2 @@
+class RankedVote < Vote
+end

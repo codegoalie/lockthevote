@@ -14,7 +14,7 @@ elections = [
     election: 'Federal and State',
     races: [
       {
-        type: 'Race',
+        type: 'RankedRace',
         office_name: 'Commander in Cream and Vice Ice',
         candidates: [
           {
@@ -93,6 +93,10 @@ elections.each do |data|
         Vote.create!(voter: FactoryGirl.create(:user),
                      race: race,
                      selection: race.candidates.sample(2).pluck(:id).join(','))
+      when 'RankedRace'
+        Vote.create!(voter: FactoryGirl.create(:user),
+                     race: race,
+                     selection: race.candidates.pluck(:id).shuffle.join(','))
       else
         Vote.create!(voter: FactoryGirl.create(:user),
                      race: race,
