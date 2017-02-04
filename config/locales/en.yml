@@ -25,6 +25,14 @@ en:
       election:
         starts_at: Opens
         ends_at: Closes
+  errors:
+    pick_two_vote:
+      selection:
+        exactly_two: Please select exactly two candidates
+        does_not_exist: Your selection does not exist. Please choose two of the
+          candidates.
+      race:
+        not_a_pick_two: This vote is only valid for races picking two candidates.
   time:
     formats:
       full: '%A, %B %-d, %Y'
