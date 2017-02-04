@@ -1,3 +1,3 @@
 class Candidate < ApplicationRecord
-  has_many :races
+  belongs_to :race
 end
