@@ -17,7 +17,7 @@ RSpec.describe PickTwoVote do
       expect(vote.valid?).to be_falsey
       expect(vote.errors.messages.keys).to include(:selection)
       expect(vote.errors.messages[:selection]).to include \
-        I18n.t('errors.pick_two_vote.selection.does_not_exist')
+        I18n.t('errors.vote.selection.does_not_exist')
     end
 
     it 'is false for non-pick-two races' do
