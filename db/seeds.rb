@@ -14,7 +14,7 @@ elections = [
     election: 'Federal and State',
     races: [
       {
-        type: 'Race',
+        type: 'RankedRace',
         office_name: 'Commander in Cream and Vice Ice',
         candidates: [
           {
