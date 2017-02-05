@@ -16,12 +16,22 @@ FactoryGirl.define do
 
   factory :pick_two_vote do
     association :race, factory: :pick_two_race, strategy: :build
+    association :voter, factory: :user, strategy: :build
     selection do
       first_selection = (Candidate.first || FactoryGirl.create(:candidate))
       second_selection = (Candidate.not.where(id: first_selection.id).first || \
                           FactoryGirl.create(:candidate))
 
       [first_selection.id.to_s, second_selection.id.to_s].join(',')
+    end
+  end
+
+  factory :ranked_vote do
+    association :voter, factory: :user, strategy: :build
+    association :race, factory: :ranked_race, strategy: :build
+
+    selection do
+      race.candidates.pluck(:id).shuffle.join(',')
     end
   end
 

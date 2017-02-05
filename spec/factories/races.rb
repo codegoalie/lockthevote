@@ -10,4 +10,10 @@ FactoryGirl.define do
     description FFaker::Company.bs
     election
   end
+
+  factory :ranked_race do
+    office FFaker::Company.position
+    description FFaker::Company.bs
+    election
+  end
 end
