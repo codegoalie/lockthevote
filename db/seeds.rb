@@ -90,9 +90,13 @@ elections.each do |data|
     (rand * 10).round.times do
       case race.type
       when 'PickTwoRace'
-        Vote.create!(voter: FactoryGirl.create(:user),
-                     race: race,
-                     selection: race.candidates.sample(2).pluck(:id).join(','))
+        PickTwoVote.create!(voter: FactoryGirl.create(:user),
+                            race: race,
+                            selection: race.candidates.sample(2).pluck(:id).join(','))
+      when 'RankedRace'
+        RankedVote.create!(voter: FactoryGirl.create(:user),
+                           race: race,
+                           selection: race.candidates.pluck(:id).shuffle.join(','))
       else
         Vote.create!(voter: FactoryGirl.create(:user),
                      race: race,
