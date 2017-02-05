@@ -1,6 +1,10 @@
 class PickTwoVote < Vote
   validate :exactly_two_selections, :for_a_pick_two_race
 
+  def best_selection
+    selection.split(',')
+  end
+
   private
 
   def exactly_two_selections

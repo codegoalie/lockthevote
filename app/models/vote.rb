@@ -4,6 +4,10 @@ class Vote < ApplicationRecord
 
   validate :selections_exist_as_candidates
 
+  def best_selection
+    selection
+  end
+
   private
 
   def selection_ids
