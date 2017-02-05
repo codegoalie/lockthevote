@@ -1,4 +1,10 @@
 class PickTwoRace < Race
+  def record_vote(user, selections)
+    votes.create(type: 'PickTwoVote',
+                 voter: user,
+                 selection: selections.map(&:id).join(','))
+  end
+
   private
 
   def selections

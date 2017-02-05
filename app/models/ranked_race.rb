@@ -16,6 +16,12 @@ class RankedRace < Race
     @vote_count ||= votes.count
   end
 
+  def record_vote(user, selections)
+    votes.create(type: 'RankedVote',
+                 voter: user,
+                 selection: selections.map(&:id).join(','))
+  end
+
   private
 
   def losing_selections

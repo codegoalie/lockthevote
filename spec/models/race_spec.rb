@@ -8,10 +8,10 @@ RSpec.describe Race do
       loser = FactoryGirl.create :candidate, race: race
 
       3.times do
-        FactoryGirl.create :vote, race: race, selection: winner.id
+        race.record_vote(FactoryGirl.create(:user), winner)
       end
       2.times do
-        FactoryGirl.create :vote, race: race, selection: loser.id
+        race.record_vote(FactoryGirl.create(:user), loser)
       end
 
       expect(race.winner).to eq(winner)

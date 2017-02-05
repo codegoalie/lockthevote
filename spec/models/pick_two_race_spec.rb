@@ -9,19 +9,13 @@ RSpec.describe PickTwoRace do
       other2 = FactoryGirl.create :candidate, race: race
 
       3.times do
-        FactoryGirl.create :vote,
-                           race: race,
-                           selection: [winner.id, other1.id].join(',')
+        race.record_vote(FactoryGirl.create(:user), [winner, other1])
       end
       3.times do
-        FactoryGirl.create :vote,
-                           race: race,
-                           selection: [winner.id, other2.id].join(',')
+        race.record_vote(FactoryGirl.create(:user), [winner, other2])
       end
       2.times do
-        FactoryGirl.create :vote,
-                           race: race,
-                           selection: [other1.id, other2.id].join(',')
+        race.record_vote(FactoryGirl.create(:user), [other1, other2])
       end
 
       expect(race.winner).to eq(winner)

@@ -7,6 +7,10 @@ class Race < ApplicationRecord
     candidates.find(winning_selection[0])
   end
 
+  def record_vote(user, selection)
+    votes.create(voter: user, selection: selection.id)
+  end
+
   private
 
   def available_candidates
