@@ -1,0 +1,151 @@
+# this is an example of the Uber API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: LockTheVote
+  description: Online voting
+  version: "1.0.0"
+# the domain of the service
+host: lockthe.vote.codegoalie.com
+# array of all schemes that your API supports
+schemes:
+  - https
+# will be prefixed to all paths
+basePath: /api
+produces:
+  - application/json
+paths:
+  /token:
+    post:
+      summary: Authenticate and get session tokens
+      description: |
+        The token endpoint requires an email address and password for a user and
+        returns a token response which contains an authentication token to be
+        used when accessing other API endpoints as well as a refresh token which
+        can be used to get a new authentication token without requiring the user
+        to enter their credentials again. This provides continual access to the
+        API without a long lived token nor the clients to store and access the
+        user's credentials.
+      parameters:
+        - name: email
+          in: query
+          description: Email address of the user.
+          required: true
+          type: string
+        - name: password
+          in: query
+          description: Password for the user's account.
+          required: true
+          type: string
+      tags:
+        - Authentication
+      responses:
+        201:
+          description: Session tokens
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Token'
+        406:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /refresh:
+    post:
+      summary: Generate a new authentication token from a refresh token
+      description: The refresh endpoint generates a fresh set of tokens for
+        user without requiring the user to provider their credentials again.
+      parameters:
+        - name: refresh-token
+          in: header
+          description: Refresh token from a previous session
+          required: true
+          type: string
+          format: 'REFRESH {refresh-token}'
+      tags:
+        - Authentication
+      responses:
+        201:
+          description: Session tokens
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Token'
+        406:
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/Error'
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /elections:
+    get:
+      summary: Lists current elections the user can participate
+      description: The elections endpoint returns elections in which the user
+        can, or could, participate. Withput providing a state value, only open
+        elections will be returned. Closed or upcoming elections can be fetched
+        using the 'state' parameter.
+      parameters:
+        - name: state
+          in: query
+          description: State(s) for which returned elections will match
+          required: false
+          type: array
+          items:
+            type: string
+      tags:
+        - Elections
+      responses:
+        200:
+          description: Elections list
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Election'
+          
+definitions:
+  Token:
+    type: object
+    properties:
+      authentication_token:
+        type: string
+        description: Authentication token to be used when accessing other API
+          endpoints.
+      expires:
+        type: string
+        description: This is the ISO-8601 formatted expiration of the
+          authentication token.
+      refresh_token:
+        type: string
+        description: Refresh token to be used to get a new authentication token
+          after the authentication token expires.
+      refresh_expires:
+        type: string
+        description: ISO-8601 formatted expiration time of the refresh token.
+  Election:
+    type: object
+    properties:
+      name:
+        type: string
+        description: Title of the election
+      starts_at:
+        type: string
+        description: ISO-8601 timestamp when the election opens
+      ends_at:
+        type: string
+        description: ISO-8601 timestamps when the election closes
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+      fields:
+        type: string
