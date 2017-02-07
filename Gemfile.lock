@@ -38,6 +38,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     awesome_print (1.7.0)
     babel-source (5.8.35)
@@ -73,6 +75,18 @@ GEM
       sprockets-es6 (>= 0.9.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    google-protobuf (3.1.0)
+    googleauth (0.5.1)
+      faraday (~> 0.9)
+      jwt (~> 1.4)
+      logging (~> 2.0)
+      memoist (~> 0.12)
+      multi_json (~> 1.11)
+      os (~> 0.9)
+      signet (~> 0.7)
+    grpc (1.0.0)
+      google-protobuf (~> 3.0)
+      googleauth (~> 0.5.1)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -99,10 +113,15 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    little-plugger (1.1.4)
+    logging (2.1.0)
+      little-plugger (~> 1.1)
+      multi_json (~> 1.10)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
+    memoist (0.15.0)
     method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
@@ -133,7 +152,9 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    os (0.9.6)
     pg (0.19.0)
+    public_suffix (2.0.5)
     puma (3.7.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -194,6 +215,11 @@ GEM
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
     sexp_processor (4.7.0)
+    signet (0.7.3)
+      addressable (~> 2.3)
+      faraday (~> 0.9)
+      jwt (~> 1.5)
+      multi_json (~> 1.10)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -241,6 +267,8 @@ DEPENDENCIES
   factory_girl_rails
   ffaker
   foundation-rails
+  google-protobuf
+  grpc
   haml
   haml-rails
   jbuilder (~> 2.5)
@@ -260,4 +288,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.3
+   1.13.7

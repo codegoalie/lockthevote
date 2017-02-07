@@ -1,4 +1,4 @@
-FROM ruby:2.4.0
+FROM ruby:2.3.3
 
 ENV APP_HOME /lockthevote
 

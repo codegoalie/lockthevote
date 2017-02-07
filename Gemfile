@@ -8,6 +8,8 @@ end
 gem 'awesome_print'
 gem 'devise'
 gem 'foundation-rails'
+gem 'google-protobuf'
+gem 'grpc'
 gem 'haml'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.5'
