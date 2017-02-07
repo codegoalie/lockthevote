@@ -24,10 +24,10 @@
             <a href="#tag-Authentication">Authentication</a>
             <ul>
               <li>
-                <a href="#operation--token-post"> Authenticate and get session tokens </a>
+                <a href="#operation--token-post"> Authenticate session </a>
               </li>
               <li>
-                <a href="#operation--refresh-post"> Generate a new authentication token from a refresh token </a>
+                <a href="#operation--refresh-post"> Refresh tokens </a>
               </li>
             </ul>
           </section>
@@ -35,7 +35,7 @@
             <a href="#tag-Elections">Elections</a>
             <ul>
               <li>
-                <a href="#operation--elections-get"> Lists current elections the user can participate </a>
+                <a href="#operation--elections-get"> Lists current elections </a>
               </li>
             </ul>
           </section>
@@ -43,7 +43,7 @@
             <a href="#tag-Voting">Voting</a>
             <ul>
               <li>
-                <a href="#operation--vote-post"> Casts a vote in a race in an election </a>
+                <a href="#operation--vote-post"> Cast a vote </a>
               </li>
             </ul>
           </section>
@@ -52,7 +52,7 @@
           <a href="#definition-Election"> Election </a>
           <a href="#definition-Error"> Error </a>
           <a href="#definition-Race"> Race </a>
-          <a href="#definition-Token"> Token </a>
+          <a href="#definition-Session"> Session </a>
           <a href="#definition-Vote"> Vote </a>
         </nav>
       </div>
@@ -101,7 +101,7 @@
             <!-- </div> -->
             <!-- </section> -->
             <h2 class="operation-title">
-              <span class="operation-summary">Authenticate and get session tokens</span>
+              <span class="operation-summary">Authenticate session</span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -173,7 +173,7 @@
                       <div class="prop-title">201 Created</div>
                       <div class="prop-ref">
                         <span class="json-schema-ref-object">
-                          <a class="json-schema-ref" href="#/definitions/Token">Token</a>
+                          <a class="json-schema-ref" href="#/definitions/Session">Session</a>
                         </span>
                       </div>
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
@@ -258,7 +258,7 @@
             <!-- </div> -->
             <!-- </section> -->
             <h2 class="operation-title">
-              <span class="operation-summary">Generate a new authentication token from a refresh token</span>
+              <span class="operation-summary">Refresh tokens</span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -311,7 +311,7 @@
                       <div class="prop-title">201 Created</div>
                       <div class="prop-ref">
                         <span class="json-schema-ref-object">
-                          <a class="json-schema-ref" href="#/definitions/Token">Token</a>
+                          <a class="json-schema-ref" href="#/definitions/Session">Session</a>
                         </span>
                       </div>
                       <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
@@ -397,7 +397,7 @@
             <!-- </div> -->
             <!-- </section> -->
             <h2 class="operation-title">
-              <span class="operation-summary">Lists current elections the user can participate</span>
+              <span class="operation-summary">Lists current elections</span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -509,7 +509,7 @@
             <!-- </div> -->
             <!-- </section> -->
             <h2 class="operation-title">
-              <span class="operation-summary">Casts a vote in a race in an election</span>
+              <span class="operation-summary">Cast a vote</span>
             </h2>
             <div class="doc-row">
               <div class="doc-copy">
@@ -830,9 +830,9 @@
               </div>
             </div>
           </div>
-          <div id="definition-Token" class="panel panel-definition" data-traverse-target="definition-Token">
+          <div id="definition-Session" class="panel panel-definition" data-traverse-target="definition-Session">
             <h2 class="panel-title">
-              <a name="/definitions/Token"></a>Token:
+              <a name="/definitions/Session"></a>Session:
               <span class="json-property-type">
                 <span class="json-property-type">object</span>
                 <span class="json-property-range" title="Value limits"></span>
