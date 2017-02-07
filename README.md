@@ -1,24 +1,4 @@
-# README
+# LockTheVote
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Lock the Vote is a simple voting platform. Visit `/doc/index.html` for our API
+documentation.
