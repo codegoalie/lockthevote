@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205132343) do
+ActiveRecord::Schema.define(version: 20170207022627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 20170205132343) do
     t.datetime "updated_at",                   null: false
     t.string   "type",        default: "Race", null: false
     t.index ["election_id"], name: "index_races_on_election_id", using: :btree
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "authentication_token"
+    t.datetime "expires"
+    t.string   "refresh_token"
+    t.datetime "refresh_expires"
+    t.index ["authentication_token"], name: "index_sessions_on_authentication_token", unique: true, using: :btree
+    t.index ["refresh_token"], name: "index_sessions_on_refresh_token", unique: true, using: :btree
+    t.index ["user_id"], name: "index_sessions_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
