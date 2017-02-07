@@ -25,15 +25,21 @@ en:
       election:
         starts_at: Opens
         ends_at: Closes
+    errors:
+      models:
+        vote:
+          attributes:
+            race:
+              taken: already has a vote for you.
   errors:
     pick_two_vote:
       selection:
-        exactly_two: Please select exactly two candidates
+        exactly_two: should include exactly two candidates
       race:
-        not_a_pick_two: This vote is only valid for races picking two candidates.
+        not_a_pick_two: is not a pick two race.
     vote:
       selection:
-        does_not_exist: Your selection does not exist. Please choose two of the
+        does_not_exist: contains unknown candidate IDs. Please choose from the
           candidates.
   time:
     formats:

@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2, :developer]
 
   has_many :sessions
+  has_many :votes, foreign_key: 'voter_id'
 
   def self.from_omniauth(access_token)
     data = access_token.info

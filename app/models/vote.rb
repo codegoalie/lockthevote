@@ -1,8 +1,10 @@
+# frozen_string_literal: true
 class Vote < ApplicationRecord
   belongs_to :voter, class_name: 'User'
   belongs_to :race
 
   validate :selections_exist_as_candidates
+  validates :race, uniqueness: { scope: :voter }
 
   def best_selection
     selection
