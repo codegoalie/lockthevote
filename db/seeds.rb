@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This file should contain all the record creation needed to seed the database
 # with its default values.
 # The data can then be loaded with the rails db:seed command (or created
@@ -99,3 +100,13 @@ elections.each do |data|
     end
   end
 end
+
+u = User.find_or_initialize_by(email: 'chris@codegoalie.com')
+u.password = 'password'
+u.save!
+u.sessions.create!(
+  authentication_token: 'auth',
+  expires: 5.days.from_now,
+  refresh_token: 'refresh',
+  refresh_expires: 13.days.from_now
+)

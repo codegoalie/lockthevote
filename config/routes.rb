@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   namespace :api do
     resources :sessions, only: :create
     resources :refresh_tokens, path: 'refresh', only: :create
+    resources :elections, only: :index
   end
 end
