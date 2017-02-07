@@ -17,7 +17,7 @@ produces:
 paths:
   /token:
     post:
-      summary: Authenticate and get session tokens
+      summary: Authenticate session
       description: |
         The token endpoint requires an email address and password for a user and
         returns a token response which contains an authentication token to be
@@ -56,7 +56,7 @@ paths:
             $ref: '#/definitions/Error'
   /refresh:
     post:
-      summary: Generate a new authentication token from a refresh token
+      summary: Refresh tokens
       description: The refresh endpoint generates a fresh set of tokens for
         user without requiring the user to provider their credentials again.
       parameters:
@@ -85,7 +85,7 @@ paths:
             $ref: '#/definitions/Error'
   /elections:
     get:
-      summary: Lists current elections the user can participate
+      summary: Lists current elections
       description: The elections endpoint returns elections in which the user
         can, or could, participate. Withput providing a state value, only open
         elections will be returned. Closed or upcoming elections can be fetched
@@ -115,7 +115,7 @@ paths:
               $ref: '#/definitions/Election'
   /vote:
     post:
-      summary: Casts a vote in a race in an election
+      summary: Cast a vote
       description: Given a race and a selection, casts a vote on bahalf of the
         authenticated user in the given race.
       parameters:
