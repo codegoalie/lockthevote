@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-class Api::SessionsController < ApplicationController
+class Api::SessionsController < Api::ApplicationController
+  skip_before_action :authenticate_by_token, only: :create
   before_action :authenticate_with_email_and_password
 
   def create
