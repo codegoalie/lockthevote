@@ -75,7 +75,7 @@ paths:
             type: object
             items:
               $ref: '#/definitions/Token'
-        406:
+        401:
           description: Unauthorized
           schema:
             $ref: '#/definitions/Error'
@@ -98,6 +98,12 @@ paths:
           type: array
           items:
             type: string
+        - name: authentication-token
+          in: header
+          description: Authentication token from the /token endpoint.
+          required: true
+          type: string
+          format: 'BEARER {authentication-token}'
       tags:
         - Elections
       responses:
@@ -107,6 +113,47 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Election'
+  /vote:
+    post:
+      summary: Casts a vote in a race in an election
+      description: Given a race and a selection, casts a vote on bahalf of the
+        authenticated user in the given race.
+      parameters:
+        - name: race_id
+          in: query
+          description: Race identifier provided in the /elections endpoint.
+          required: true
+          type: integer
+        - name: selection
+          in: query
+          description: Candidate identifier(s) also provided in the /elections
+            endpoint. Either a single candidate identifier, or a comma-separated
+            list of identifiers, depending on the race type. Race needs a single
+            identifier. PickTwoRace needs at most two identifiers. RankedRace
+            needs at most the number of candidates in the race in the order of
+            preference.
+          required: true
+          type: string
+        - name: authentication-token
+          in: header
+          description: Authentication token from the /token endpoint.
+          required: true
+          type: string
+          format: 'BEARER {authentication-token}'
+      tags:
+        - Voting
+      responses:
+        201:
+          description: Vote cast
+          schema:
+            $ref: '#/definitions/Vote'
+        400:
+          description: Vote not cast due to error in the vote request submitted.
+            Error specifics will be included in the response, but examples
+            include improper selection format or attempting to vote on a closed
+            race.
+          schema:
+            $ref: '#/definitions/Error'
           
 definitions:
   Token:
@@ -139,13 +186,55 @@ definitions:
       ends_at:
         type: string
         description: ISO-8601 timestamps when the election closes
+      races:
+        type: array
+        items:
+          $ref: '#/definitions/Race'
+  Race:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique identifier of the race to be used when voting
+      office:
+        type: string
+        description: Title of the office at stake in the race
+      description:
+        type: string
+        description: Description of the office at stake in the race
+      type:
+        type: string
+        description: Specific type of race, Race (pick one), PickTwoRace, or
+          RankedRace
+      candidates:
+        type: array
+        items:
+          $ref: '#/definitions/Candidate'
+  Candidate:
+    type: object
+    properties:
+      id:
+        type: integer
+        description: Unique identifer of the candidate to be used when voting
+      name:
+        type: string
+        description: Name of the candidate
+  Vote:
+    type: object
+    properties:
+      race_id:
+        type: integer
+        description: Identifier of the race for which the vote was cast
+      selection:
+        type: string
+        description: Identifier(s) for the candidate to which the vote was cast
   Error:
     type: object
     properties:
       code:
         type: integer
         format: int32
-      message:
-        type: string
-      fields:
-        type: string
+      messages:
+        type: array
+        items:
+          type: string
