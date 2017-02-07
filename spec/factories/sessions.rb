@@ -10,5 +10,10 @@ FactoryGirl.define do
     trait :expired do
       expires 10.minutes.ago
     end
+
+    trait :expired_refresh do
+      expires 10.minutes.ago
+      refresh_expires 10.minutes.ago
+    end
   end
 end

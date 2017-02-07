@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Rails.application.routes.draw do
   resources :elections, only: [:index, :show]
   devise_for :users,
@@ -9,5 +10,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :sessions, only: :create
+    resources :refresh_tokens, path: 'refresh', only: :create
   end
 end
